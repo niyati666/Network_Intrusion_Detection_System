@@ -1,0 +1,15 @@
+# Use official Python base image
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy app files
+COPY . .
+
+# Install Python packages
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Run Streamlit
+EXPOSE 8501
+CMD ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.enableCORS=false"]
